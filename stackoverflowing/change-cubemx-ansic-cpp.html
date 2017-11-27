@@ -1,0 +1,33 @@
+<article>
+<header>
+    <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+    <document title="Zamiana projektu ANSI C z CubeMX na projekt C++ dla SW4STM32" language="pl-PL"/>    
+    <link rel="stylesheet" type="text/css" href="../css.css">
+    <meta charset="UTF-8"> 
+</header>
+
+
+<chapter>Zamiana projektu ANSI C z CubeMX na projekt C++ dla SW4STM32</chapter>
+<section>Zajawka</section>
+<p>
+    Tworząc nowy projekt w CubeMS od ST mamy do czynienia z projektem dla C (jesli wybieramy srodowisku SW4STM32).
+    Nawet, jeżeli już raz ustawilismy swój projekt na C++, to każde nastepne wygenerowanie ponownie zmienia nam na jego starszego brata.
+    Z tego powodu poniżej znajduje się prosta przypominajka, jak zmieniać typ projektu z C na C++ w Eclipse.
+</p>
+<section>Rozwiązanie</section>
+<ol class="simple">
+    <li>
+        Zmień nazwę pliku <code>main.c</code> na <code>main.cpp</code> aby upewnić się, że występuje błąd kompilacji.
+    </li>
+    <li>
+        Kliknij <keys>PPM</keys> na projekcie STM32 i wybierz <menupath>Convert To C++</menupath>.
+        Teraz kompilacja powinna przebiec bez problemów.
+    </li>
+</ol>
+
+<section>Dodatkowa uwaga</section>
+<p>
+    Należy zwrócić uwagę, że przy kolejnym generowaniu kodu z CubeMX sytuacja się powtórzy, tzn projekt znów będzie ANSI C.
+</p>
+    
+</article>

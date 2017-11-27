@@ -1,0 +1,115 @@
+figcaption
+{
+    font-size: 0.7rem;
+    color: grey;
+}
+figure
+{
+    margin: auto;
+    margin-bottom: 2ex;
+}
+chapter
+{
+    font-family: Impact, fantasy;
+    font-size: 2.5rem;
+    display: block;
+    margin-top: 2ex;
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+footnote
+{
+    display: none;
+}
+section
+{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2ex;
+}
+section::before
+{
+    content: "•• ";
+    margin-left: -1em;
+}
+subsection
+{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2ex;
+    display: block;
+}
+subsection::before
+{
+    content: "• ";
+    margin-left: -0.6em;
+}
+p
+{
+    text-indent: 2rem;
+    margin: 0px;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    text-align: justify;
+    width: 490px;
+}
+html
+{
+    font-size: 100%;
+}
+article
+{
+    width: 700px;
+    margin: auto;
+}
+
+*
+{
+    font-family: Helvetica, sans-serif;
+}
+
+ol.simple li
+{
+    margin-top:1ex;
+    padding: 2px;
+}
+
+pre code
+{
+    font-size: 0.9rem;
+}
+table
+{
+    margin-top: 2ex;
+}
+table th
+{
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+
+tip
+{
+    display: block;
+    font-size: 0.9rem;
+    padding: 1ex;
+    width: 180px;
+    float: right;
+    margin-left: 1em;
+}
+tip a
+{
+    text-decoration: none;
+}
+tip.todo
+{
+    background-color: rgb(228, 224, 224);
+    color: rgb(114, 114, 114);
+}
+
+tip.pro
+{
+    background-color: rgb(79, 127, 230);
+    color:white;
+}

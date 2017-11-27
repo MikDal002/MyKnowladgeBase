@@ -1,0 +1,121 @@
+<article>
+<header>
+    <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+    <document title="Składnia mojego silnika typograficznego" label="article:typhography-engine-synth" language="pl-PL"/>    
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <meta charset="UTF-8"> 
+</header>
+
+
+<chapter>Składnia mojego silnika typograficznego</chapter>
+<section>Zajawka</section>
+<p>
+    Tworząc tenże nowy system typograficzny muszę zwrócić uwagę, na to aby dosć dobrze go udokumentowac.
+    W końcu w tym wszystkim nie chodzi o to aby tworzyć po sto razy to samo oprogramowanie, tylko wykonać je raz a dobrze (wiem, że to nie możliwe, zawsze będą błędy).    
+</p>
+<p>
+    Aby choć trochę pomóc powyższym stwierdzeniom postanowiłem zacząć prowadzić pewną dokumentację.
+    Ma ona pozowlić mi lepiej zapamiętać różne potrzebne elementy, które będą w przyszłosci wykorzystane w gotowym silniku.
+</p>
+
+<section>Co zawiera każdy znacznik</section>
+<p>
+    Na ten moment wiadomo mi, że każdy znacznik powinien zawierać atrybut <code>label</code>. 
+    Pozwoli to na odwołanie się do dowolnego z znaczników w dowolnym miejscu artykułu.
+</p>
+<p>
+    Dodatkowo, co ważne, każdy znacznik, który ma jakąs tresć do zaprezentwoania (np. <code>section</code>) zawiera atrybut <code>Content</code>, który domyslnie przyjmuje ciag znaków.
+    Natomiast wartosc tego atrybutu jest automatycznie zastępowana przez to, co znajduje się pomiędzy &lt;...&gt; ... &lt;/...&gt;
+</p>
+<section>Aktualnie istniejące znaczniki</section>
+<p>
+    Poniżej są zmieszczone tabele, które opisują działanie dotychczas istniejacych znaczników. 
+    Zostały one podzielone na kilka grup aby łatwiej było je ogarnąć.
+</p>
+
+<subsection>Znaczniki nagłówka</subsection>
+<p>
+    Znaczniki te są używane głównie do tego, aby opisać dokument. 
+    Znajdują się tutaj informacje na temat autora, przystępnego tytułu dokumentu (używanego między innymi przy wyszukiwaniu). 
+    Mogą się znaleźć tutaj również inne informacje, które mają znaczenie globalne.
+</p>
+<p>
+    Co ciekawe przewiduję, aby w jednym dokumencie mogło się znaleźć wiele artykułów, gdzie każdy miałby swoją sekcję <code>header</code>.
+    Pozwoliłoby to na łatwe tworzenie zestawów porównawczych, czy serii artykułów.
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>Znacznik</th>
+            <th>Opis</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>header</code></td>
+            <td>Nagłówek - zawiera on meta informacje na temat pliku, bądź artykułu. Dalsze jego omówienie poniżej.</td>
+        </tr>
+        <tr>
+            <td><code>author</code></td>
+            <td>
+                Pole okreslajace autora. Powinno znaleźć się w <code>header</code>. Podstawowe parametry to <code>Name</code> oraz <code>email</code>, które okrelają kolejno:
+                imię i nazwisko (pseudonim) autora oraz mail do niego.
+            </td>
+        </tr>
+        <tr>
+            <td><code>document</code></td>
+            <td>Pole okreslajace podstawowe informacje na temat dokumentu, takie jak <code>title</code> czy <code>language</code>.</td>
+        </tr>
+        <tr>
+            <td><code>meta</code></td>
+            <td>Akutalnie przewiduję tutaj tylko wartosć <code>charset</code>, która może się przydać przy dekodowaniu pliku.</td>
+        </tr>
+    </tbody>
+</table>
+
+<subsection>Znaczniki w tekscie</subsection>
+<p>
+    Są to znaczniki używane bezposrednio w tekscie.
+    Z zasady należy się skupić na tych, które wprowadzają logiczny sens do artykułu (jak <code>section</code>, czy <code>code</code>).
+    Znaczniki odpowiedzialne za wygląd, choć na ten moment niezdefiniowane, powinny być używane jak najrzadziej wewnątrz pracy.
+</p>
+<table>
+        <thead>
+            <tr>
+                <th>Znacznik</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>chapter</code></td>
+                <td>Okresla nazwę rozdziału</td>
+            </tr>
+            <tr>
+                <td><code>section</code></td>
+                <td>Okresla nazwe sekcji</td>
+            </tr>
+            <tr>
+                <td><code>subsection</code></td>
+                <td>Okresla podsekcję</td>
+            </tr>
+            <tr>
+                <td><code>code</code></td>
+                <td>Okresla wszystko to, co można okreslic mianem kodu i używa się w linii</td>
+            </tr>
+            <tr>
+                <td><code>menupath</code></td>
+                <td>Służy do stylizowania scieżki po menu. Nie uważam tego za konieczną częsć silnika.</td>
+            </tr>
+            <tr>
+                <td><code>keys</code></td>
+                <td>Służy do stylizowania skrótów klawiaturowych. Nie uważam tego za konieczną częsć silnika.</td>
+            </tr>
+        </tbody>
+</table>
+<section>Wielojęzycznosć</section>
+<p>
+    Wielojęzycznosć proponuję wykonać za pomocą tag'a <code>label</code>.
+    Kiedy będą istniały dwa artykuły o takiej samej etykiecie natomiast o dwóch różnych językach, to znaczy, że są one równoważne.
+</p>
+</article>

@@ -1,0 +1,76 @@
+<article class="language-cpp">
+<header>
+    <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+    <document title="Alternatywa dla QObject::connect"  language="pl-PL"/>    
+    <link rel="stylesheet" type="text/css" href="../css.css">
+    <meta charset="UTF-8"> 
+    <pre language="C++" default/>
+    <link href="../prism.css" rel="stylesheet"/>
+    
+</header>
+<script src="../prism.js"></script>
+
+<chapter>Alternatywa dla QObject::connect</chapter>
+    <p>
+        Jak na razie nie udało mi się znaleźć perfekcyjnej alternatywy dla systemu eventów Qt. 
+        Jednak ta oferowana przez STL (którą na razie sam poznałem) wydaje mi się bardziej intuicyjna od tej z QTL<footnote>QTL - Qt template library (biblioteka Qt).</footnote>.
+    </p>
+    <section index="std::function">std::function</section>
+    <tip class="pro">
+        Jesli szukasz innych odpowiedników dla wskaźników do funkcji zajrzyj <a href="#">tutaj</a>.
+    </tip>
+    <p>
+        Jest to typ, który pozwala na przechowywanie wskaźnika do funkcji.
+        Posiada przy każdym wywołaniu <strong>minimalny narzut</strong> procesora, jednak jasnosć jego deklaracji rekompensuje
+        to w przypadku względnie rzadkiego wywoływania. 
+        Poniżej krótki przykład:
+    </p>
+    <figure>
+        <pre class="line-numbers"><code >
+            void moja_funkcja() { ... }
+            int main()
+            {
+                std::function&lt;void()> nazwa_eventu; // tworzymy nowy obiekt
+                nazwa_eventu = &moja_funkcja;   // przypisujemy do niego nowa funkcję
+                
+                if (nazwa_eventu) nazwa_eventu(); // jesli nazwa_eventu ma jakas wartosc - wywołaj.
+            }
+        </code></pre>
+        <figcaption>Przykład wykorzystania std::function.</figcaption>
+    </figure>
+    <subsection>Wywoływanie funkcji z obiektu</subsection>
+    <tip class="todo">
+        Są również i inne rozwiązania, które na ten moment albo mi nie leżą albo nie są mi znane.
+        Jeżeli cos wiesz to daj znać!
+    </tip>
+    <p>
+        Problem pojawia się kiedy chcemy przypisać do <code>nazwa_eventu</code> funkcję, która jest elementem jakiejs klasy. 
+        Niestety, jesli nie jest to funkcja statyczna to rodzi się problem. 
+        Jak na razie najlepszym rozwiązaniem, które mi pasuje to zrobienie funkcji "odbiorczej" funkcją statyczną z jednym parametrem
+        który jest wskaźnikiem na obiekt nadrzędny i uzycie funkcji <index>std::bind</index>.
+    </p>
+    <figure>
+
+        <pre class="line-numbers"><code>
+            class moja_klasa { 
+                void funkcja_do_wywolania() {...}
+                static void funkcja_statyczna_do_wywolania(moja_klasa* mjc) { ... }
+            };
+            
+            int main()
+            {
+                std::function<void()> nazwa_eventu; // tworzymy nowy obiekt
+                    // nazwa_eventu = &moja_klasa::funkcja_do_wywolania;   // error!
+                    
+                    moja_klasa klasa;
+                    nazwa_eventu = std::bind(&moja_klasa::funkcja_statyczna_do_wywolania, &klasa);
+                    
+                    if (nazwa_eventu) nazwa_eventu(); // jesli nazwa_eventu ma jakas wartosc - wywołaj.
+                }
+            </code></pre>
+            <figcaption>Przykład użycia std::function oraz std::bind do wywołania funkcji z argumentem.</figcaption>
+        </figure>
+            <p>
+        Dzięki takiemu rozwiążaniu każde wywołanie <code>nazwa_eventu()</code> będzie wyowoływać funkcję <code>funkcja_statyczna_do_wywolania(moja_klasa* mjc)</code> z parametrem <code>&klasa</code>.
+    </p>
+</article>
