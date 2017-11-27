@@ -1,34 +1,40 @@
-<article>
+<article class="language-Cpp">
 <header>
     <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
     <document title="Usuwanie wszystkich elementów latoutu w Qt"  language="pl-PL"/>    
-    <link rel="stylesheet" type="text/css" href="css.css">
+    <link rel="stylesheet" type="text/css" href="../css.css">
     <meta charset="UTF-8"> 
+    <link href="../prism.css" rel="stylesheet"/>
+    <script src="../prism.js"></script>
 </header>
 
 
-<chapter>Usuwanie wszystkich elementów latoutu w Qt</chapter>
-<tip type="info">Działa zarówno dla Qt4.x jak i Qt5.x</tip>
-<p>
-    Ponizej znajduje się kawałek kodu umożliwiającego usunięcie w łatwy sposób wszystkich elementów, które znajduja się wewnątrz layoutu.
-</p>
-<pre language="C++">
-    void RemoveChilds(QLayoutItem *layout)
-    {
-        while (layout->count() != 0)
-        {
-            QLayoutItem* child = layout->takeAt(0);
-            if (child->layout() != 0)
+<chapter>Usuwanie wszystkich elementów <br /> layout'u w Qt</chapter>
+    <tip class="info">
+        Działa zarówno dla Qt4.x jak i Qt5.x
+    </tip>
+    <p>
+        Ponizej znajduje się kawałek kodu umożliwiającego usunięcie w łatwy sposób wszystkich elementów, które znajduja się wewnątrz layoutu.
+    </p>
+    <figure>
+        <pre class="line-numbers"><code>
+            void RemoveChilds(QLayoutItem *layout)
             {
-                RemoveChilds(child->layout());
+                while (layout->count() != 0)
+                {
+                    QLayoutItem* child = layout->takeAt(0);
+                    if (child->layout() != 0)
+                    {
+
+                        RemoveChilds(child->layout());
+                    } else if (child->widget() != 0)
+                    {
+                        delete child->widget();
+                    }
+                    delete child;
+                }
             }
-            else if (child->widget() != 0)
-            {
-                delete child->widget();
-            }
-    
-            delete child;
-        }
-    }
-</pre>
+        </code></pre>
+        <figcaption>Usuwanie wszystkich elementów z layout w Qt.</figcaption>
+    </figure>
 </article>

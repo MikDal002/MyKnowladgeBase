@@ -8,6 +8,12 @@ figure
     margin: auto;
     margin-bottom: 2ex;
 }
+figure pre
+{
+    /*max-height: 22ex;*/
+    margin-bottom: 2ex;
+    overflow: auto;
+}
 chapter
 {
     font-family: Impact, fantasy;
@@ -77,7 +83,9 @@ ol.simple li
 
 pre code
 {
+    line-height: 1pt;
     font-size: 0.9rem;
+    
 }
 table
 {
@@ -91,8 +99,9 @@ table th
 
 tip
 {
+    font-weight: bold;
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 1ex;
     width: 180px;
     float: right;
@@ -107,9 +116,13 @@ tip.todo
     background-color: rgb(228, 224, 224);
     color: rgb(114, 114, 114);
 }
-
 tip.pro
 {
     background-color: rgb(79, 127, 230);
     color:white;
+}
+tip.info
+{
+    background-color: grey;
+    color: white;
 }
