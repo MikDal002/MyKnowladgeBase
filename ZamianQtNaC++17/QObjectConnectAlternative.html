@@ -60,13 +60,13 @@
             int main()
             {
                 std::function<void()> nazwa_eventu; // tworzymy nowy obiekt
-                    // nazwa_eventu = &moja_klasa::funkcja_do_wywolania;   // error!
-                    
-                    moja_klasa klasa;
-                    nazwa_eventu = std::bind(&moja_klasa::funkcja_statyczna_do_wywolania, &klasa);
-                    
-                    if (nazwa_eventu) nazwa_eventu(); // jesli nazwa_eventu ma jakas wartosc - wywołaj.
-                }
+                // nazwa_eventu = &moja_klasa::funkcja_do_wywolania;   // error!
+                
+                moja_klasa klasa;
+                nazwa_eventu = std::bind(&moja_klasa::funkcja_statyczna_do_wywolania, &klasa);
+                
+                if (nazwa_eventu) nazwa_eventu(); // jesli nazwa_eventu ma jakas wartosc - wywołaj.
+            }
             </code></pre>
             <figcaption>Przykład użycia std::function oraz std::bind do wywołania funkcji z argumentem.</figcaption>
         </figure>
