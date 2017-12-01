@@ -1,4 +1,4 @@
-<article class="language-cpp">
+<article class="language-c#">
     <header>
         <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
         <document title="Zaawansowana obsługa błędów wewnątrz oprogramowania"  language="pl-PL"/>    
@@ -16,4 +16,81 @@
         Pomijajac aspekty, które zostały poruszone w takich klasykach jak np. <i>Czysty Kod</i> chciałbym tutaj przedstawić rozwiązanie bardziej złożone.
         Podejściem przedstawionym poniżej będą zainteresowane szczególnie osoby, które muszą raportować informacje na temat poprawności przetwarzania danych wprowadzonych przez użytkownika.
     </p>
+    <section>Jaki efekt chcę uzyskać</section>
+    <p>
+        Jeśli pracowałeś z kompilatorem VC++ lub LaTeX'em to spotkałeś sie nie raz z błędami w stylu:
+    </p>
+    <figure>
+        <pre><code>
+            Error T12345: Tutaj treść błędu
+        </code></pre> 
+        <figcaption>Przykład błędu.</figcaption>
+    </figure>
+    <p>
+        Cały ten dokument będzie dążył do zaprezentowania obsługi oraz organizacji powyższych błędów.
+        System ten jest niezwykle uniwersalny i może być używany nie tylko do raportowania stanu danych wejściowych, ale również tych wewnątrz aplikacji.
+    </p>
+    <chapter>Prosta implementacja</chapter>
+        <p>
+            Nie ma co tworzyć za długich wstępów, czas przejść do prostej implementacji.
+            Podane niżej przykłady zostały niedawno przeze mnie opracowane. 
+            Niestety nie spotkałem sie nigdzie z wykorzystaniem podobnych rzeczy gdzieś w przestrzeni "publicznej", jednak jak na razie sprawdzają się one bardzo dobrze.
+        </p>
+        <p>
+            Poniżej przedstawiam przykład wywołania takiego ostrzeżenia (błędu). 
+        </p>
+        <figure>
+            <pre><code>
+                Logger.Write(Warnings.cant-find-definition, "Nie można znaleźć definicji");    
+            </code></pre>
+            <figcaption>Przykład wywołania ostrzeżenia</figcaption>
+        </figure>
+        <p>
+            Jak widać na powyższym listingu mamy klasę <code>Logger</code> z funkcją <code>Write</code>, która przyjmuje jako parametr obiekt błędu, oraz dodatkową wiadomość.
+            Zanim przejdziemy dalej warto pokazać czym jest <code>cant-find-definition</code>.
+        </p>
+        <section>Konstrukcja błędu i ostrzeżenia</section>
+        <p>
+            Aby cały system utrzymać spojnym to wszystkie dane na temat błędów, ostrzeżeń i innych musza dziedziczyć po jednej klasie.
+            Taką klasą nadrzędną uczyniłem LoggerItem:
+        </p>
+        <figure>
+            <pre><code>
+                class LoggerItem
+                {
+                    public string Message {get; set;}
+                    public int Number {get; set;}
+                    public ItemClass ItemType {get; set;}
+                    enum ItemClass { WARNING, ERROR, INFO }
+                    public LoggerItem (int Number, string Message, ItemClass ItemType)
+                    { this.Message = Message; this.Number= Number; this.ItemType = ItemType; }
+                }    
+            </code></pre>
+            <figcaption>Klasa nadrzędna dla wszystkich ostrzeżeń i błędów.</figcaption>
+        </figure>
+        <p>
+            Nie wiele można wyjaśnić więcej w powyższym kodzie.
+        </p>
+        <ul>
+            <li><code>Message</code> jest niczym innym jak informacja wyświetlaną każdorazowo przy zapisywaniu błedu do log'a <footnote>Logiem może być zarówno konsola jak i plik, o tym w dalszej części</footnote>.</li>
+            <li><code>Number</code> jest numerem błędu, który musi byc unikatowy w skali systemu (aby to miało sens).</li>
+                    <tip class="todo">
+                        Możliwe jest dodanie systemu, który weryfikowałby, czy nie ma dwóch takich samych elementów podczas uruchomienia programu.
+                    </tip>
+            <li><code>ItemType</code> jest typem elementu (ostrzeżenie, błąd, informacja).</li>
+        </ul>
+        <p>
+            Jak widać, dodanie nowego typu jest równowazne z dodaniem nowego elementu do <code>ItemClass</code>.
+            Natomiast dodawanie kolejnych elementów w całym systemie wygląda następujaco:
+        </p>
+        <figure>
+            <pre><code>
+                class Warnings {
+                    static LoggerItem cant-find-definition 
+                        (0x10001, "Nie można odnaleźć definicji", ItemClass.WARNING);
+                }    
+            </code></pre>
+            <figcaption>Dodawanie ostrzeżenia do programu.</figcaption>
+        </figure>
+    <chapter>Dobre praktyki</chapter>
 </article>
