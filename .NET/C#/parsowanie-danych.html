@@ -1,0 +1,53 @@
+<article class="language-c#">
+    <header>
+        <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+        <document title="Parsowanie danych"  language="pl-PL"/>    
+        <link rel="stylesheet" type="text/css" href="../../css.css">
+        <meta charset="UTF-8"> 
+        <pre language="C++" default/>
+        <link href="../../prism.css" rel="stylesheet"/>
+        
+    </header>
+    <script src="../../prism.js"></script>
+    <title>Parsowanie danych</title>
+
+    <chapter>Wstęp</chapter>
+        <p>
+            Jest to wpis czysto techniczny, który ma za zadanie zwrócić uwage na szczegóły, które pojawiaja się podczas zmiany przychodzących ciągów znakowych na liczby.
+            Otóż w .NET okazuje się, że poprawny kod może bezbłędnie działać na jednej, czy wielu maszynach, a już kilku następnych - niekoniecznie.
+        </p>
+
+    <chapter>Przykłady problemów z parsowaniem danych</chapter>
+        <section>Parsowanie notacji wykładniczej (naukowej)</section>
+        <tip class="info">
+            Problem ten został przezemnie zdiagnozowany w .NET Freamwork 4.7.1.
+        </tip>
+        <tip class="todo">
+            Jak na moje oko przydałoby się głębsze dochodzenie co dokładnie tutaj psuje rezultaty.
+        </tip>
+        <p>
+            Pierwszy raz problem z parsowaniem danych, który objawiał się tylko na niektórych maszynach klienckich wystąpił kiedy próbowałem przekonwertować liczbę w zapisie "1.92+E02".
+            Okazało się, że poprawność działania zależy od ustawień regionalnych.
+        </p>
+        <figure>
+            <pre><code>
+                string dataToParse = "1.92+E02";
+                double retVal = Double.Parse(dataToParse);
+            </code></pre> 
+            <figcaption>Problematyczna składnia</figcaption>
+        </figure>
+        <p>
+            I tak, powyższy kod będzie działał bezbłednie przez długie godziny, natomiast wystarczy czasem drobna zmiana w konfiguracji regionalnej i bach! 
+            Wszystko się sypie, a jedyną informacje jaką dostajemy to wyjątek <code>ArgumentFormatException</code>, który to, według mnie, ma się nijak do realnego problemu.
+        </p>
+        <p>
+            Rozwiązaniem problemu jest wymuszenie działania funkcji <code>Double.Parse</code> w sposób niezależny od ustawień regionalnych. 
+        </p>
+        <figure>
+            <pre><code>
+                string dataToParse = "1.92+E02";
+                double retVal = Double.Parse(dataToParse, NumberStyles.Any, CultureInfo.InvariantCulture);;
+            </code></pre> 
+            <figcaption>Poprawna konwersja string'ów na typ zmiennoprzecinkowy.</figcaption>
+        </figure>
+</article>
