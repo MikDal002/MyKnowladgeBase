@@ -1,0 +1,83 @@
+﻿<article class="language-git">
+    <header>
+        <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+        <document title="Codzienna praca z gitem" language="pl-PL" />
+        <link rel="stylesheet" type="text/css" href="../css.css">
+        <meta charset="UTF-8">
+        <link href="../prism.css" rel="stylesheet" />
+
+    </header>
+    <script src="../prism.js"></script>
+    <title>Codzienna praca z gitem</title>
+
+    <chapter>Wstęp</chapter>
+    <p>
+        Wpis ten powstaje w celu zgromadzenia wszystkich podstawowych rzeczy do codziennej pracy z gitem w jednym miejscu.
+        Dotychczas korzystałem z nakładek na powłokę Windows'a, jednak moja ulubiona (Tortois Git) staje się coraz bardziej niewystarczający.
+    </p>
+    <p>
+        Osobiście najbardziej lubię pracować w stylu git-flow, także wszystkie poniższe komendy będą standardowo dążyły do zachowania tego standardu.
+    </p>
+
+    <chapter>Git everyday</chapter>
+    <section>Kiedy skończyłeś to o co prosił szef</section>
+    <p>
+        Kiedy skończyłeś gałąź tematyczną należy ją wciągnąć do gałęzi nadrzędnej (np. develop'a).
+        Takie rzeczy robię za pomocą prostej komendy:
+    </p>
+    <figure>
+        <pre><code>
+                git merge feature/name  --no-ff--edit --log=2
+            </code></pre>
+        <figcaption>Włączanie nowej funkcjonalności do gałęzi nadrzędnej</figcaption>
+    </figure>
+    <p>
+        I tak o to dzięki <code>--no-ff</code> zachowujemy zgodność z git-flow, <code>--edit</code> mamy możliwość wprowadzenia własnego opisu w miejsce łączenia gałęzi, a <code>--log=2</code> dodaje nam do tego opisu tematy ostatnich dwoch zatwierdzeń z nowo łączonej gałęzi.
+        Oczywiście w tym ostatnim poleceniu można tę liczbę zmienić.
+    </p>
+    <tip class="todo">
+        Zobaczyć za bardziej uniwersalnym sposobem na automatyczne włączanie tematów wszystkich gałęzi.
+    </tip>
+    <p>
+        Nawet kiedy nie zależy mi na tym, aby zawierać te informacje w komentarzu do zatwierdzenia, to lubię je tam mieć, bo przypominają mi szczegóły nad którymi pracowałem.
+    </p>
+    <chapter>Kiedy się pomylisz</chapter>
+    <section>Kiedy szef poprosił Cię o nową funkcjonalność</section>
+    <p>
+        Często zdarza mi się, że pracując nad jedną funkcją dostaję polecenie, aby rozszerzyć coś co już działa.
+        Czasem zdaża mi się rozpocząć działanie tam gdzie skończyłem, a to skutkuje paroma zatwierdzeniami na gałęzi, której daleko do poprawnego działania.
+        Wygląda to mniej więcej tak:
+    </p>
+    <figure>
+        <pre><code class="git-graph">d
+                               /topicA         /topicY
+                              E---F---G---H---I---J---K
+                             /
+                A---B---C---D develop
+            </code></pre>
+        <figcaption>Pogląd problemu</figcaption>
+    </figure>
+    <p>
+        To co chcę zrobić, to przenieść spowrotem topicY bezpośrednio na gałąź develop.
+        Robi się to bardzo prosto za pomocą rebase:
+    </p>
+    <figure>
+        <pre><code>
+                    git reabse --onto develop topicA topicY
+            </code></pre>
+        <figcaption>Polecenie przenoszące jedną gałąź w inne miejsce.</figcaption>
+    </figure>
+    <p>
+        Dzięki takiemu zabiegowi sprawa rozwiażana i nasze repo wygląda następująco:
+    </p>
+    <figure>
+        <pre><code class="git-graph">      d   
+                              E---F---G topicA 
+                             /
+                A---B---C---D develop
+                             \
+                              H'---I'---J'---K' topicY
+            </code></pre>
+        <figcaption>Pogląd problemu</figcaption>
+    </figure>
+</article>
