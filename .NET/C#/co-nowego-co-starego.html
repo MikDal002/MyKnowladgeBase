@@ -1,0 +1,28 @@
+<article class="language-c#">
+    <header>
+        <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+        <document title="Co nowego, co starego?"  language="pl-PL"/>    
+        <link rel="stylesheet" type="text/css" href="../../css.css">
+        <meta charset="UTF-8"> 
+        <pre language="C++" default/>
+        <link href="../../prism.css" rel="stylesheet"/>
+        
+    </header>
+    <script src="../../prism.js"></script>
+    <title>Parsowanie danych</title>
+
+    <chapter>Wstęp</chapter>
+        <p>
+            Czasy się zmieniają, API .NET'a również. 
+            Dlatego właśnie postanowiłem zebrać rzeczy, które wydają mi się nowe w jednym miejscu.
+        </p>
+        
+    <chapter>"Coś się kończy, coś się zaczyna"</chapter>
+        <section>DateTime i DateTimeOffset</section>
+        <p>
+            W sumie ciekawy zbieg okoliczności, że obiekt do manipulacji punktem w czasie stał się przestarzały.
+            Niestety <a href="https://blogs.msdn.microsoft.com/davidrickard/2012/04/06/datetime-and-datetimeoffset-in-net-good-practices-and-common-pitfalls/">MSDN mówi o tym, że DateTime ma wiele niedoskonałości</a>.
+            A na jego miejsce powstał nowy twór: <code>DateTimeOffset</code>.
+            Który w końcu zawiera tak ważeą funkcje jak <code>ToUnixTimeSeconds</code> i <code>ToUnixTimeMiliseconds</code>.
+        </p>
+</article>
