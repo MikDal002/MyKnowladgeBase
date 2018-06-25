@@ -1,0 +1,85 @@
+<article class="language-c#">
+    <header>
+        <author name="Mikołaj Dalecki" email="dalecki.mikolaj@gmail.com" />
+        <document title="Bindowanie danych w XAML"  language="pl-PL"/>    
+        <link rel="stylesheet" type="text/css" href="../../css.css">
+        <meta charset="UTF-8"> 
+        <pre language="C++" default/>
+        <link href="../../prism.css" rel="stylesheet"/>
+        
+    </header>
+    <script src="../../prism.js"></script>
+    <title>Bindowanie danych w XAML</title>
+
+    <chapter>Wstęp</chapter>
+        <p>
+            Bindowanie danych w XAML to bardzo potężne narzędzie.
+            Często kroć umożliwia pozbycia się wielu linijek kodu oraz niezbyt intuicyjnej konwersji.
+            Jednak sposobów na możliwą konwersję jest wiele.
+            Tak więc postanowiłem zebrać je wszystkie w jednym miejscu.
+        </p>
+        
+    <chapter>Pomoce specyficzne dla różnych kontrolek</chapter>
+        <section>ComboBox i ComboBoxItem</section>
+        <tip class="info">
+                Istnieje jeszcze inny, nie opisany tutaj, sposób z użyciem konwertera Enum&lt;-&gt;Sring.
+        </tip>
+        <p>
+            Bardzo często spotykam się z problemem bindowanie list do typu Enum.
+            Kiedyś robiłem to za pomocą zwykłej konwersji, jednak niosło to za sobą niesamowicie dużo pracy.
+            Choćby wtedy, kiedy chciałem zmienić tekst wyświetlany na ekranie, to musiałem edytować go w również w kodzie kontrolera.
+            Jednak jest jeden miły sposób na uproszczenie tej metody.
+        </p>
+        <p>
+            Całość sztuczki polega na wykorzystaniu dwóch elementów <code>SelectedValue</code> oraz <code>SelectedValuePath</code>.
+        </p>
+        <tip class="info">
+                Ciekawostką jest, że <code>SelectedValue</code> jest modyfikowane przez <code>SelectedValuePath</code>, natomiast <code>SelectedItem</code> będzie zawsze zwracał to samo.
+            </tip>
+        <p>
+            <ul>
+                <li><code>SelectedValue</code> - do tego elementu bindujemy właściwość w kontrolerze, która jest odpowiedniego typu Enum</li>
+                <li><code>SelectedValuePath</code> - okresla, co dokładnie z wybranego elementu ma być bindowane do powyższej zmiennej</li>
+            </ul>
+        </p>
+        
+        <p>
+            Dzięki parametrowi <code>SelectedValuePath</code> jesteśmy w stanie dokonać następującej magii.
+        </p>
+        <figure>
+        <pre><code class="language-markup">
+                &lt;ComboBox SelectedValue="{Binding EnumNameParameter}" SelectedValuePath="Tag"&gt;
+                    &lt;ComboBoxItem Tag="{x:Static local:EnumName.EnumValue1}"&gt;Wybrana nazwa1&lt;/ComboBoxItem&gt;
+                    &lt;ComboBoxItem Tag="{x:Static local:EnumName.EnumValue2}"&gt;Wybrana nazwa2&lt;/ComboBoxItem&gt;
+                &lt;/ComboBox&gt;
+        </code></pre>
+        <figcaption>
+            Combox z ComboBoxItems, który realizuje bindowanie pomiędzy wybraną wartością a enum. 
+            Jego niewątpliwą zaletą jest dowolny tekst wyświetlany w GUI.
+        </figcaption>
+    </figure>
+        <p>
+            W pierwszej linijce najważniejsza jest wartość <code>SelectedValuePath</code> z wartością <strong>Tag</strong>.
+            Powoduje to, zgodnie z tym co zostało napisane powyżej, że do parametru <code>SelectedValue</code> lądują wartości zapisane pod ścieżką <code>ComboBoxItem.Tag</code>.
+            Co ciekawe, nie muszą tam znajdować się koniecznie wartości typu enum. 
+            Mogą to być listy, a nawet obiekty. Ważne aby były one <strong>statyczne</strong>.
+        </p>
+        <p>
+            Dla porządku dodaję jeszcze minimalny kod kontrolera tegoż widoku.
+        </p>
+        <figure>
+        <pre><code class="language-Csharp line-numbers ">
+            class ViewClass : Page // wiadomo, że klasa nadrzędna może być inna
+            {
+                public enum EnumName
+                {
+                    EnumValue1,
+                    EnumValue2
+                }
+
+                public EnumName EnumNameParameter {get; set;}
+            }
+        </code></pre>
+        <figcaption>Kod kontrolera dla bindingów enuma.</figcaption>
+    </figure>
+</article>
