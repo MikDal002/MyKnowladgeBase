@@ -30,7 +30,7 @@
             Okazało się, że poprawność działania zależy od ustawień regionalnych.
         </p>
         <figure>
-            <pre><code>
+            <pre><code class="language-csharp">
                 string dataToParse = "1.92+E02";
                 double retVal = Double.Parse(dataToParse);
             </code></pre> 
@@ -44,7 +44,7 @@
             Rozwiązaniem problemu jest wymuszenie działania funkcji <code>Double.Parse</code> w sposób niezależny od ustawień regionalnych. 
         </p>
         <figure>
-            <pre><code>
+            <pre><code class="line-numbers">
                 string dataToParse = "1.92+E02";
                 double retVal = Double.Parse(dataToParse, NumberStyles.Any, CultureInfo.InvariantCulture);;
             </code></pre> 

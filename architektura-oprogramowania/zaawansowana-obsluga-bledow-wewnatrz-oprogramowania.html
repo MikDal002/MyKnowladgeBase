@@ -40,7 +40,7 @@
             Poniżej przedstawiam przykład wywołania takiego ostrzeżenia (błędu). 
         </p>
         <figure>
-            <pre><code>
+            <pre><code class="language-csharp">
                 Logger.Write(Warnings.cant-find-definition, "Nie można znaleźć definicji");    
             </code></pre>
             <figcaption>Przykład wywołania ostrzeżenia</figcaption>
@@ -55,7 +55,7 @@
             Taką klasą nadrzędną uczyniłem LoggerItem:
         </p>
         <figure>
-            <pre><code>
+            <pre><code class="language-csharp">
                 class LoggerItem
                 {
                     public string Message {get; set;}
@@ -84,7 +84,7 @@
             Natomiast dodawanie kolejnych elementów w całym systemie wygląda następujaco:
         </p>
         <figure>
-            <pre><code>
+            <pre><code class="language-csharp">
                 class Warnings {
                     static LoggerItem cant-find-definition 
                         (0x10001, "Nie można odnaleźć definicji", ItemClass.WARNING);
