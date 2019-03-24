@@ -50,15 +50,18 @@ subsection::before
     content: "• ";
     margin-left: -0.6em;
 }
-p
-{
-    text-indent: 2rem;
+p ol li {
+    width: 490px;
     margin: 0px;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
     text-align: justify;
-    width: 490px;
+}
+
+p
+{
+    text-indent: 2rem;
 }
 html
 {

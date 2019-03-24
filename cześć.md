@@ -29,14 +29,17 @@ Poniżej prezentuję w jaki sposób powieniem wstawiać wszystkie elementy do pl
 Czas na mały przykładowy blok kodu, wemy na przykład taki z Qt:
 
 <figure>
-<pre class="language-cpp"><code>
+
+```C++
 #include <QDebug>
 #include <QString>
 QString name = "Trochę mojej wiedzy";
 if (name.lenght() > 5)
 {
     qDebug() << "Ho, ho, ale się rozpisałeś!";
-}</code></pre>
+}
+```
+
 <figcaption>Krótki przykładowy kodzik.</figcaption>
 </figure>
 

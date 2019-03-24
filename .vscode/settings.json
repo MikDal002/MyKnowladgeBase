@@ -1,6 +1,6 @@
 {
     "markdown.styles": [
         "markdown.css"
-    ]
-    "markdown.showToolbar": true
+    ],
+    "cSpell.language": "pl"
 }

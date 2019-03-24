@@ -25,24 +25,34 @@ h2 {
 h3 {
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 2ex;
+    margin-top: 3ex;
+    margin-bottom: 0.5ex;
 }
 h3::before {
     content: "•• ";
     margin-left: -1em;
 }
 
-
-
-
-p {
-    text-indent: 2rem;
+p, ol, ul {
     margin: 0px;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+}
+
+body > p, body > ol, body > ul {
+    max-width: 490px;
     text-align: justify;
-    width: 490px;
+}
+
+body > p {
+    text-indent: 2rem;
+}
+
+body > ol, body > ul {
+    margin: 1ex 0;
+    padding-left: 45px;
+    width: 445px;
 }
 
 table
@@ -67,13 +77,30 @@ figure
 }
 figure pre
 {
-    /*max-height: 22ex;*/
+    max-height: 24ex;
     margin-bottom: 2ex;
     overflow: auto;
 }
 
 pre code
 {
-    line-height: 1pt;
+    /*line-height: 1pt;*/
     font-size: 0.9rem;
+}
+
+blockquote {
+    background: steelblue;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    float: right;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 1ex;
+    margin-left: 1em;
+    width: 180px;
+}
+
+blockquote > p {
+    text-align: left;
 }

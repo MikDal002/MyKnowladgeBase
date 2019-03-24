@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Trochę mojej wiedzy</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+* { font-family: Helvetica, sans-serif; } body { width: 700px; margin: auto; } h1 { font-family: Impact, fantasy; font-size: 3rem; text-align: center; } h2 { font-family: Impact, fantasy; font-size: 2.5rem; display: block; margin-top: 2ex; border-bottom:1px solid #CCC; padding-bottom:3px; } h3 { font-size: 2rem; font-weight: bold; margin-top: 2ex; } h3::before { content: "•• "; margin-left: -1em; } p { text-indent: 2rem; margin: 0px; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; text-align: justify; width: 490px; } table { margin-top: 2ex; } table th { border-bottom:1px solid #CCC; padding-bottom:3px; } figcaption { font-size: 0.7rem; color: grey; } figure { margin: auto; margin-bottom: 2ex; } figure pre { /*max-height: 22ex;*/ margin-bottom: 2ex; overflow: auto; } pre code { line-height: 1pt; font-size: 0.9rem; }
+</style>
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="autor-miko%C5%82aj-dalecki-mikdalopensourceoutlookcomdata-23032018tytu%C5%82-troch%C4%99-mojej-wiedzy">autor: Mikołaj Dalecki <a href="mailto:mikdal_opensource@outlook.com">mikdal_opensource@outlook.com</a>
+data: 23.03.2018
+tytuł: Trochę mojej wiedzy</h2>
+<link href="prism.css" rel="stylesheet"/>
+<script src="prism.js"></script>
+<h1 id="troch%C4%99-mojej-wiedzy">Trochę mojej wiedzy</h1>
+<h2 id="wst%C4%99p">Wstęp</h2>
+<p>Witam w moim repozytorium, z którego robię pewien erazc bloga.
+Wrzucam tutaj takie rzeczy, które często wypadają mi z głowy.
+Jeżeli uważasz, że któreś z moich rozwiązań jest błędne, to proszę, daj mi znać.</p>
+<p>Ważną dla mnie rzeczą jest to, aby cały blog był bardzo czytelny i elegancki zarazem.
+Dodatkowo chciałbym, na ile to możliwe, posługiwać się językiem polskim przy wyjaśnianiu wszelakich pojęć.</p>
+<p>Dokument, który teraz czytasz jest dla mnie wzorcem, pokazującym jak powinienem organizować wszystkie inne pliki.</p>
+<h2 id="wstawianie-element%C3%B3w">Wstawianie elementów</h2>
+<p>Poniżej prezentuję w jaki sposób powieniem wstawiać wszystkie elementy do pliku, oraz jak powinno to wyglądać.</p>
+<h3 id="tabele">Tabele</h3>
+<p>Tabele są nieodłączną częścią każdej dłuższej pracy.
+Także w związku z tym, także i one mają swoje miejsce w niniejszej pracy:</p>
+<figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Id</th>
+<th style="text-align:center">Nazwa pola</th>
+<th style="text-align:center">Wartość</th>
+<th style="text-align:left">Inne informacje dodatkowe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:center">Imię</td>
+<td style="text-align:center">Mikołaj</td>
+<td style="text-align:left">Brak</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:center">Imię</td>
+<td style="text-align:center">Andrzej</td>
+<td style="text-align:left">Tutaj tych informacji musi trochę być, aby pokazać, jak tabela jest szersza niznormalny teskst</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<h3 id="kod">Kod</h3>
+<p>Czas na mały przykładowy blok kodu, wemy na przykład taki z Qt:</p>
+<figure>
+<pre class="line-numbers language-cpp"><code>
+#include <QDebug>
+#include <QString>
+QString name = "Trochę mojej wiedzy";
+if (name.lenght() > 5)
+{
+    qDebug() << "Ho, ho, ale się rozpisałeś!";
+}</code></pre>
+<figcaption>Krótki przykładowy kodzik.</figcaption>
+</figure>
+<p>Jak widać, również i tutaj cały blok z kodem źródłowym zajął całą dostępną szerokość kolumny, to bardzo miłe z jego strony.</p>
+
+    </body>
+    </html>
